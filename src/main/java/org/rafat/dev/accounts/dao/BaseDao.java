@@ -1,10 +1,12 @@
 package org.rafat.dev.accounts.dao;
 
 import java.io.Serializable;
+import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import org.hibernate.Session;
 
 public abstract class BaseDao<T extends Serializable> {
 
@@ -13,11 +15,17 @@ public abstract class BaseDao<T extends Serializable> {
     @PersistenceContext
     private EntityManager entityManager;
 
+
+
+    public BaseDao() {
+        this.clazz = (Class<T>) ((ParameterizedType) this.getClass().getGenericSuperclass()).getActualTypeArguments()[0];
+    }
+
     public final void setClazz(final Class<T> clazzToSet) {
         this.clazz = clazzToSet;
     }
 
-    public T findOne(final long id) {
+    public T findById(final long id) {
         return entityManager.find(clazz, id);
     }
 
@@ -26,11 +34,12 @@ public abstract class BaseDao<T extends Serializable> {
         return entityManager.createQuery("from " + clazz.getName()).getResultList();
     }
 
-    public void create(final T entity) {
+    public T create(final T entity) {
         entityManager.persist(entity);
+        return entity;
     }
 
-    public T update(final T entity) {
+    public T saveOrUpdate(final T entity) {
         return entityManager.merge(entity);
     }
 
@@ -39,8 +48,11 @@ public abstract class BaseDao<T extends Serializable> {
     }
 
     public void deleteById(final long entityId) {
-        final T entity = findOne(entityId);
+        final T entity = findById(entityId);
         delete(entity);
     }
 
+    public Session getSession() {
+        return entityManager.unwrap(Session.class);
+    }
 }
