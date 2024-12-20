@@ -1,8 +1,13 @@
 
 server:
     port: 8082
+    servlet:
+      context-path: /api/v1
 
 spring:
-    application:
+  application:
       name: accounts
-
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: none
