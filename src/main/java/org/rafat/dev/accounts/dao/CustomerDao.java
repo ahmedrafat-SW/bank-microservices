@@ -1,15 +1,23 @@
 package org.rafat.dev.accounts.dao;
 
-import jakarta.transaction.Transactional;
 import org.rafat.dev.accounts.model.Customer;
-import org.springframework.stereotype.Repository;
 
-@Repository
-@Transactional
-public class CustomerDao extends BaseDao<Customer> {
+import java.util.List;
 
-    public CustomerDao() {
-        super();
-        setClazz(Customer.class);
-    }
+public interface CustomerDao {
+
+    Customer getCustomerByMobileNumber(String mobileNumber);
+
+    Customer getById(Long id);
+
+    List<Customer> findAll();
+
+    Customer create(Customer customer);
+
+    Customer saveOrUpdate(Customer customer);
+
+    void delete(Customer customer);
+
+    void delete(Long id);
+
 }

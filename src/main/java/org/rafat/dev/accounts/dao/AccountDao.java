@@ -1,13 +1,19 @@
 package org.rafat.dev.accounts.dao;
 
 import org.rafat.dev.accounts.model.Account;
-import org.springframework.stereotype.Repository;
+import org.rafat.dev.accounts.model.Customer;
 
-@Repository
-public class AccountDao extends BaseDao<Account> {
+import java.util.List;
 
-    public AccountDao() {
-        super();
-        setClazz(Account.class);
-    }
+public interface AccountDao {
+
+    Account getById(Long id);
+
+    List<Account> findAll();
+
+    Account create(Account Account);
+
+    Account saveOrUpdate(Account account);
+
+    Account getAccountByCustomerId(Long customerId);
 }
