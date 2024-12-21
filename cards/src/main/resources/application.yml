@@ -1,0 +1,17 @@
+server:
+  port: 8088
+  servlet:
+    context-path: /api/v1
+
+spring:
+  application:
+    name: Cards
+
+  datasource:
+    username: postgres
+    password: postgres
+    url: jdbc:postgresql://localhost:5432/cards_db
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
