@@ -1,24 +1,25 @@
 package org.rafat.dev.accounts.api;
 
-import org.rafat.dev.accounts.dto.AccountDto;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.Pattern;
+import lombok.AllArgsConstructor;
 import org.rafat.dev.accounts.dto.CustomerDto;
 import org.rafat.dev.accounts.service.CustomerService;
 import org.rafat.dev.accounts.util.AccountsResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/customers")
+@Validated
+@AllArgsConstructor
 public class CustomerController {
 
     private final CustomerService customerService;
-
-    public CustomerController(CustomerService customerService) {
-        this.customerService = customerService;
-    }
 
 
     @GetMapping("/list")
@@ -32,7 +33,7 @@ public class CustomerController {
     }
 
     @PostMapping
-    public ResponseEntity<AccountsResponse<CustomerDto>> createCustomer(@RequestBody CustomerDto customerDto){
+    public ResponseEntity<AccountsResponse<CustomerDto>> createCustomer(@RequestBody @Valid CustomerDto customerDto){
         CustomerDto customer = customerService.createCustomer(customerDto);
 
         return ResponseEntity.status(HttpStatus.CREATED)
@@ -40,7 +41,9 @@ public class CustomerController {
     }
 
     @GetMapping
-    public ResponseEntity<AccountsResponse<CustomerDto>> getCustomerByMobileNumber(@RequestParam String mobile){
+    public ResponseEntity<AccountsResponse<CustomerDto>> getCustomerByMobileNumber(@RequestParam
+                                                                                   @Pattern(regexp = "(^$|[0-9]{10})", message = "mobile number should be 10 digits.")
+                                                                                   String mobile){
         CustomerDto customerDto = customerService.getCustomerByMobileNumber(mobile);
 
         AccountsResponse<CustomerDto> accountsResponse = new AccountsResponse<>();
