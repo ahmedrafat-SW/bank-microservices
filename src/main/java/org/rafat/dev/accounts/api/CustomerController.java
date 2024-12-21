@@ -1,5 +1,8 @@
 package org.rafat.dev.accounts.api;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
@@ -17,6 +20,7 @@ import java.util.List;
 @RequestMapping("/customers")
 @Validated
 @AllArgsConstructor
+@Tag(name = "CRUD Operation on Customer")
 public class CustomerController {
 
     private final CustomerService customerService;
@@ -33,6 +37,8 @@ public class CustomerController {
     }
 
     @PostMapping
+    @Operation(description = "Create customer and add new account")
+    @ApiResponse(responseCode = "201", description = "Http status created")
     public ResponseEntity<AccountsResponse<CustomerDto>> createCustomer(@RequestBody @Valid CustomerDto customerDto){
         CustomerDto customer = customerService.createCustomer(customerDto);
 
