@@ -1,0 +1,17 @@
+server:
+  port: 8089
+  servlet:
+    context-path: /api/v1
+
+spring:
+  application:
+    name: Loans
+
+  datasource:
+    username: postgres
+    password: postgres
+    url: jdbc:postgresql://localhost:5432/loans_db
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
