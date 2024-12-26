@@ -1,4 +1,6 @@
 
-accounts/.idea/**
-accounts/HELP.md
-accounts/target/**
+/accounts/.idea/**
+/accounts/HELP.md
+/accounts/target/**
+/loans/target/**
+/cards/target/**
