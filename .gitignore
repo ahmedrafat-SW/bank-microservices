@@ -4,3 +4,4 @@
 /accounts/target/**
 /loans/target/**
 /cards/target/**
+/.idea/**
