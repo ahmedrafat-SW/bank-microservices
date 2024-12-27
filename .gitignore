@@ -1,6 +1,5 @@
-/.idea/**
-/accounts/.idea/**
-/accounts/HELP.md
-/accounts/target/**
-/loans/target/**
-/cards/target/**
+.idea/
+accounts/.idea/
+accounts/target/
+loans/target/
+cards/target/
