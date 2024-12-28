@@ -67,6 +67,7 @@
 
 
     <build>
+        <finalName>loans-microservice</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>

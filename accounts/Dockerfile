@@ -1,6 +1,6 @@
 FROM openjdk:17-slim
 
-LABEL org.opencontainers.image.authors="AHMED RAFAT"
+LABEL authors="Ahmed Rafat"
 
 COPY target/accounts-microservice.jar accounts-microservice.jar
 
