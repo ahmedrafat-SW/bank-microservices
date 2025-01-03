@@ -1,4 +1,7 @@
-FROM ubuntu:latest
+FROM openjdk:17-slim
+
 LABEL authors="ahmed"
 
-ENTRYPOINT ["top", "-b"]
+COPY target/loans-microservice.jar loans-microservice.jar
+
+ENTRYPOINT ["java", "-jar", "loans-microservice.jar"]

@@ -1,4 +1,7 @@
-FROM ubuntu:latest
+FROM openjdk:17-slim
+
 LABEL authors="ahmed"
 
-ENTRYPOINT ["top", "-b"]
+COPY target/cards-microservice.jar cards-microservice.jar
+
+ENTRYPOINT ["java", "-jar", "cards-microservice.jar"]
