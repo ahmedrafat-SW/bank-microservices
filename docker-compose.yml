@@ -1,0 +1,29 @@
+services:
+  accounts:
+    image: ahemdrafat/accounts:1.0.0
+    container_name: accounts_ms
+    ports:
+      - "8082:8082"
+    networks:
+      - bank-ms-network
+
+  cards:
+    image: ahemdrafat/cards:1.0.0
+    container_name: cards_ms
+    ports:
+      - "8088-8088"
+    networks:
+      - bank-ms-network
+
+
+  loans:
+    image: ahemdrafat/loans:1.0.0
+    container_name: loans_ms
+    ports:
+      - "8089-8089"
+    networks:
+      - bank-ms-network
+
+networks:
+  bank-ms-network:
+    driver: "bridge"
